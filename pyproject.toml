@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "revalidate"
+version = "0.1.0"
+authors = [
+  { name="Jonas Bundschuh" },
+]
+description = "A package to manage interdependent fields"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+]
+license = "GPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "numpy", "tox>=4.0", "ruff>=0.15"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/revalidate"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-rA"
+log_cli = true
+log_cli_level = "DEBUG"
+log_cli_format = "%(asctime)s %(levelname)s [%(name)s] %(message)s"
+log_cli_date_format = "%H:%M:%S"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.tox]
+requires = ["tox>=4.0"]
+env_list = ["3.11", "3.12", "3.13", "3.14"]
+
+[tool.tox.env_run_base]
+description = "Run pytest"
+extras = ["dev"]
+commands = [["pytest", "-q"]]
+
+[tool.tox.env.lint]
+description = "Run ruff"
+extras = ["dev"]
+commands = [["ruff", "check", "."]]
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+publish-url = "https://upload.pypi.org/legacy/"
+explicit = true

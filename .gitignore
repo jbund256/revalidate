@@ -1,0 +1,6 @@
+.idea
+my_script.py
+*.egg-info
+__pycache__
+*.env
+dist
