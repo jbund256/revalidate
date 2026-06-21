@@ -13,7 +13,7 @@ Then, C would be Circle and V would be float. The functions for the radius would
 
 def compute_func(circle: Circle) -> float:
     return circle.diameter / 2
-    
+
 def setter_func(circle: Circle, radius: float) -> float:
     if radius <= 0:
         raise ValueError

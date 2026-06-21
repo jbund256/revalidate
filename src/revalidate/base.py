@@ -1,9 +1,9 @@
 # coding=utf-8
 """The base classes"""
 
+from .constants import VARIABLE_MANAGER_NAME, VARIABLE_PROTOTYPE_MANAGER_NAME
 from .variable import VariableManager
 from .variable_prototype import VariablePrototype, VariablePrototypeManager
-from .constants import VARIABLE_MANAGER_NAME, VARIABLE_PROTOTYPE_MANAGER_NAME
 
 
 class VariableDict(dict):

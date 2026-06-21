@@ -5,8 +5,8 @@ from typing import Optional
 import pytest
 
 from revalidate import INVALID, Variable
+from revalidate.exceptions import VariableConsistencyError, VariableRenameError
 from revalidate.variable_prototype import VariablePrototype
-from revalidate.exceptions import VariableRenameError, VariableConsistencyError
 
 
 def test_get_name():

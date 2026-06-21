@@ -1,17 +1,22 @@
 # coding=utf-8
 """The prototype classes"""
 import inspect
-from dataclasses import dataclass, field
-from typing import Optional, Callable, Generic, Any
 import logging
+from dataclasses import dataclass, field
+from typing import Any, Callable, Generic, Optional
 
-from .classification import VariableFunctionType, VariableFunctionClassification
-from .variable import Variable, VariableManager
-from .exceptions import VariableRenameError, VariableNotFoundError, VariableInitError, VariableConsistencyError, \
-    VariableComputationError
-from .typing import C, V, ComputeFunc, SetterFunc, GetterFunc, INVALID
-from .utils import UniqueDict
+from .classification import VariableFunctionClassification, VariableFunctionType
 from .constants import VARIABLE_MANAGER_NAME
+from .exceptions import (
+    VariableComputationError,
+    VariableConsistencyError,
+    VariableInitError,
+    VariableNotFoundError,
+    VariableRenameError,
+)
+from .typing import INVALID, C, ComputeFunc, GetterFunc, SetterFunc, V
+from .utils import UniqueDict
+from .variable import Variable, VariableManager
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +34,8 @@ class VariablePrototype(Generic[C, V]):
     write_only: bool = field(default=False)
     #: Value used in the return when a value is invalid and cannot be computed (yet)
     invalid_value: Any = field(default=INVALID)
-    #: Whether to use the invalid value or not.  If not, an exception is raised when a value is requested but could not be obtained
+    #: Whether to use the invalid value or not.  If not, an exception is raised when a value is requested but could not
+    #: be obtained
     use_invalid_value: bool = field(default=False)
     doc: Optional[str] = field(default=None)
 
@@ -247,7 +253,7 @@ class VariablePrototypeManager(Generic[C, V]):
 
         This goes through the dict of the object and attaches the marked functions to the variables.
         """
-        for key, attr in attribute_dict.items():
+        for attr in attribute_dict.values():
             if not inspect.isfunction(attr):
                 continue
             if not (classification := VariableFunctionClassification.check(attr)):

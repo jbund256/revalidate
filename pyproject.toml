@@ -44,11 +44,12 @@ target-version = "py311"
 line-length = 120
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B"]
+select = ["E", "W", "F", "I", "B", "PL"]
+ignore = ["PLR2004"]
 
 [tool.tox]
 requires = ["tox>=4.0"]
-env_list = ["3.11", "3.12", "3.13", "3.14"]
+env_list = ["3.11", "3.12", "3.13", "3.14", "lint"]
 
 [tool.tox.env_run_base]
 description = "Run pytest"
@@ -57,6 +58,7 @@ commands = [["pytest", "-q"]]
 
 [tool.tox.env.lint]
 description = "Run ruff"
+base_python = "3.11"
 extras = ["dev"]
 commands = [["ruff", "check", "."]]
 

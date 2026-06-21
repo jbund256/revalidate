@@ -1,10 +1,10 @@
 # coding=utf-8
-from typing import Optional, Generic, Self, Any, TYPE_CHECKING
-from dataclasses import dataclass, field
 import logging
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, Any, Generic, Optional, Self
 
-from .exceptions import VariableNotFoundError, VariableConsistencyError
-from .typing import C, V, INVALID
+from .exceptions import VariableConsistencyError, VariableNotFoundError
+from .typing import INVALID, C, V
 from .utils import UniqueDict
 
 logger = logging.getLogger(__name__)

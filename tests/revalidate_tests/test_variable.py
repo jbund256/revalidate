@@ -2,9 +2,9 @@
 import pytest
 
 from revalidate import Variable, VariableBase, variable
+from revalidate.constants import VARIABLE_MANAGER_NAME
 from revalidate.exceptions import VariableConsistencyError
 from revalidate.variable import INVALID, VariableManager
-from revalidate.constants import VARIABLE_MANAGER_NAME
 from revalidate.variable_prototype import VariablePrototype
 
 
@@ -73,7 +73,7 @@ class UserTestHelper:
             var.make_valid()
 
     def check(self, *validity):
-        for var, valid in zip(self.vars, validity):
+        for var, valid in zip(self.vars, validity, strict=True):
             assert var.valid == valid
 
 
@@ -149,7 +149,7 @@ class TestUsers:
     def test_invalidate_users_0(self):
         """Case without users"""
         uth = UserTestHelper(*[var_1 := self.get_var("1"),
-                               var_2 := self.get_var("2")])
+                               self.get_var("2")])
         uth.make_valid()
 
         var_1.invalidate_users()

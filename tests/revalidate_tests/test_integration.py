@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from revalidate import variable, VariableBase, compute, getter, setter, INVALID
+from revalidate import INVALID, VariableBase, compute, getter, setter, variable
 from revalidate.exceptions import VariableComputationError
 
 
@@ -120,7 +120,7 @@ def test_write_only():
     mv = VariableClassWriteOnly()
     mv.a = 4
     with pytest.raises(AttributeError):
-        a = mv.a
+        _ = mv.a
 
     assert mv.b == 5
 
@@ -145,7 +145,7 @@ def test_invalid_value():
     v = VariableClassInvalid()
 
     with pytest.raises(VariableComputationError):
-        a = v.a
+        _ = v.a
 
     assert v.b == INVALID
     assert v.c == 5
@@ -154,7 +154,7 @@ def test_invalid_value():
     assert v.d == 3
 
     with pytest.raises(VariableComputationError):
-        e = v.e
+        _ = v.e
 
 
 class VariableClassGetterFunc(VariableBase):
@@ -180,7 +180,7 @@ def test_getter_func():
     v = VariableClassGetterFunc()
 
     with pytest.raises(VariableComputationError):
-        a = v.a
+        _ = v.a
     assert v.number_get_a == 0
 
     v.a = 3
@@ -211,7 +211,7 @@ def test_compute_func():
     v = VariableClassComputeFunc()
 
     assert v.number_compute_a == 0
-    a = v.a
+    _ = v.a
     assert v.number_compute_a == 1
     v.a = 3
     assert v.a == 3
@@ -239,7 +239,7 @@ def test_setter_func_1():
     v = VariableClassSetterFunc()
 
     assert v.set_a == 0
-    a = v.a
+    _ = v.a
     assert v.set_a == 0
     v.a = 1
     assert v.a == 1
@@ -251,7 +251,7 @@ def test_setter_func_2():
 
     assert v.b == 1
     assert v.set_a == 0
-    a = v.a
+    _ = v.a
     assert v.b == 1
     assert v.set_a == 0
     v.a = 1
