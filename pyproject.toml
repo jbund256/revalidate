@@ -22,6 +22,7 @@ classifiers = [
 ]
 license = "GPL-3.0-only"
 license-files = ["LICEN[CS]E*"]
+keywords = ["valid", "invalid", "cache", "variable"]
 dependencies = []
 
 [project.urls]
