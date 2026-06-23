@@ -12,3 +12,5 @@ from .variable_prototype import variable
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 __all__ = ["INVALID", "compute", "getter", "setter", "Variable", "VariableManager", "variable", "VariableBase"]
+
+__version__ = "0.1.0"

@@ -205,7 +205,6 @@ wheels = [
 
 [[package]]
 name = "revalidate"
-version = "0.1.0"
 source = { editable = "." }
 
 [package.optional-dependencies]
