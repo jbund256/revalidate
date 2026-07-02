@@ -59,7 +59,7 @@ Then, the input and output variables are defined on the class with the `variable
 For each variable, the dependencies are given here. 
 This information is used internally to mark variables invalid when one of its dependencies changes. 
 For example, if `input_1` changes, `output_1` becomes invalid because it depends on `input_1`.
-As a consequence, `output_2` becomes also invalid because it depends on `outpt_1` which just became invalid. 
+As a consequence, `output_2` becomes also invalid because it depends on `output_1` which just became invalid. 
 
 There is a compute function, marked with the decorator `compute`, defined for all output variables. 
 These functions are used to compute the value of a variable from other variables on the object.
