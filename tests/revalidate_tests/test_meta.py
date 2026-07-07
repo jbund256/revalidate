@@ -2,6 +2,7 @@
 """Tests of metadata"""
 
 import importlib
+
 import revalidate
 
 
