@@ -30,9 +30,6 @@ Homepage = "https://github.com/jbund256/revalidate"
 Repository = "https://github.com/jbund256/revalidate.git"
 Issues = "https://github.com/jbund256/revalidate/issues"
 
-[project.optional-dependencies]
-dev = ["pytest>=8.0", "numpy", "tox>=4.0", "ruff>=0.15"]
-
 [tool.hatch.build.targets.wheel]
 packages = ["src/revalidate"]
 
@@ -82,3 +79,11 @@ name = "pypi"
 url = "https://pypi.org/simple/"
 publish-url = "https://upload.pypi.org/legacy/"
 explicit = true
+
+[dependency-groups]
+dev = [
+    "numpy>=2.4.6",
+    "pytest>=9.1.1",
+    "ruff>=0.15.18",
+    "tox>=4.55.1",
+]
