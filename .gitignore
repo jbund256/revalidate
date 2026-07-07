@@ -4,3 +4,4 @@ my_script.py
 __pycache__
 *.env
 dist
+site
