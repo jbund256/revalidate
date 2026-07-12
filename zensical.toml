@@ -5,6 +5,13 @@ site_author = "Jonas Bundschuh"
 copyright = """
 Copyright &copy; 2026 Jonas Bundschuh
 """
+nav = [
+    "index.md",
+    "installation.md",
+    "quick_start.md",
+    "advanced.md"
+]
+repo_url = "https://github.com/jbund256/revalidate"
 
 [project.theme]
 variant = "modern"
