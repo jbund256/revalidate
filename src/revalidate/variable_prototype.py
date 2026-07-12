@@ -216,10 +216,11 @@ class VariablePrototypeManager(Generic[C, V]):
         """Check the consistency of the container"""
         variable_names = set(self._variable_prototypes.keys())
         dependency_names = set()
-        # todo: add invalidates
         for var in self:
             for dependency in var.depends_on:
                 dependency_names.add(dependency)
+            for invalidator in var.invalidates:
+                dependency_names.add(invalidator)
 
         if not dependency_names.issubset(variable_names):
             difference = dependency_names.difference(variable_names)

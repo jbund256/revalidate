@@ -4,7 +4,7 @@ from typing import Optional
 
 import pytest
 
-from revalidate import INVALID, Variable
+from revalidate import INVALID, Variable, VariableBase, variable
 from revalidate.exceptions import VariableConsistencyError, VariableRenameError
 from revalidate.variable_prototype import VariablePrototype
 
@@ -142,3 +142,15 @@ def test_setter_func():
     signature = inspect.signature(setter_func)
     assert len(signature.parameters) == 2
     assert signature.return_annotation is None
+
+
+def test_checking_depends_on():
+    with pytest.raises(VariableConsistencyError):
+        class InconsistentClass(VariableBase):
+            var_1 = variable(depends_on=["var_2"])
+
+
+def test_checking_invalidates():
+    with pytest.raises(VariableConsistencyError):
+        class InconsistentClass(VariableBase):
+            var_1 = variable(invalidates=["var_2"])
